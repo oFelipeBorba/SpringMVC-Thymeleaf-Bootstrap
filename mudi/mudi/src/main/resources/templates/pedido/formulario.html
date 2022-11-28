@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>Novo Pedido</title>
+<head th:replace="~{base::head}">
 </head>
 <body>
+<div th:replace="~{base::conteudoHead}"></div>
 <div class="container">
-    <div class="jumbotron pt-5 pb-5 ps-4 mb-3 bg-light">
-        <h1 class="display-4">Novo pedido</h1>
-    </div>
+
+    <div th:replace="~{base :: titulo('Novo Pedido')}"></div>
     <div class="card">
 <!--        estamos usando o thymeleaf para gerenciar o formulario e apresentar os campos obrigatorios e armazenas os valores caso ocorra err.-->
 <!--        para isso foi escrito a anotacao do th:object com a classe criada que salva os valores do form-->
@@ -18,7 +15,7 @@
                 <label for="nomeProduto">Produto</label>
 <!--                Aqui foi colocado a anotacao th:field para informar que esse campo e referente a um determinado atributo do obj informado acima no th:object-->
 <!--                Fazendo essa anotacao o th gerencia o campo, entao n e necessario usar name, nem id nessa tag input-->
-                <input th:field="*{nomeProduto}" class="form-control is-invalid" placeholder="Nome do produto"/>
+                <input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do produto"/>
                 <small>Informar qual o nome do produto.</small>
                 <!--            Para tratar um erro, o thymeleaf tem a notacao th:errors onde deve ser passado o atributo com *-->
                 <div class="invalid-feedback" th:errors="*{nomeProduto}">
@@ -28,7 +25,7 @@
 
             <div class="form-group mb-2">
                 <label for="urlImagem">Imagem</label>
-                <input th:field="*{urlImagem}" class="form-control is-invalid" placeholder="Imagem do produto"/>
+                <input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" placeholder="Imagem do produto"/>
                 <small>Procure em um site o produto que deseja e cole a url da imagem aqui.</small>
                 <div class="invalid-feedback" th:errors="*{urlImagem}">
                     Erro da url imagem
@@ -36,7 +33,7 @@
             </div>
             <div class="form-group mb-2">
                 <label for="urlProduto">URL</label>
-                <input th:field="*{urlProduto}" class="form-control is-invalid" placeholder="Url do produto"/>
+                <input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Url do produto"/>
                 <small>Procure em um site o produto que deseja e cole a url aqui.</small>
                 <div class="invalid-feedback" th:errors="*{urlProduto}">
                     Erro da url do produto
